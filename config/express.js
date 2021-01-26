@@ -1,14 +1,11 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 const cookieParser = require('cookie-parser');
-const { createServer } = require('http');
-const chatConnection = require('../chat');
-
-const WebSocket = require('ws');
-
-const server = createServer(app);
-const wss = new WebSocket.Server({ server });
-wss.on('connection', chatConnection);
+const bodyParser = require('body-parser');
 
 app.use(cookieParser());
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+require('../config/routes')(app);
 
-module.exports = server;
+module.exports = app;
