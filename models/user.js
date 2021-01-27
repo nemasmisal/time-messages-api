@@ -19,7 +19,8 @@ const userSchema = new Schema({
   },
   rooms: {
     type: [mongoose.Schema.Types.ObjectId],
-    ref: 'Room'
+    ref: 'Room',
+    default: []
   }
 });
 

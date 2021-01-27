@@ -3,11 +3,11 @@ const env = process.env.NODE_ENV || 'development';
 
 const config = {
     development: {
-        port: dotenv.PORT,
+        port: Number(dotenv.PORT),
         db: dotenv.DB_HOST,
         authCookieName: dotenv.COOKIE_NAME,
         authHeaderName: dotenv.HEADER_NAME,
-        saltRounds: dotenv.SALT_ROUNDS,
+        saltRounds: Number(dotenv.SALT_ROUNDS),
         jwtSecret: dotenv.JWT_SECRET
     },
     production: {}
