@@ -14,6 +14,19 @@ module.exports = {
      const rooms = await Room.find({}).populate('owner').lean();
      res.send(rooms);
    } catch (error) { res.status(507).send({ msg: error }); }
+ },
+ async joinRoom(req, res, next) {
+   try {
+     const { username, roomId } = req.body;
+     await Room.findByIdAndUpdate(roomId, { $push: { users: username }});
+     res.status(202).send({ msg: 'Successfully join to the room.'})
+   } catch (error) { return res.status(507).send({ msg: error }); }
+ },
+ async leaveRoom(req, res, next) {
+   try {
+     const { username, roomId } = req.body;
+     await Room.findByIdAndUpdate(roomId, { $pull :{ users: username }});
+     res.status(202).send({ msg: 'Successfully left the room'});
+   } catch (error) { return res.status(507).send({ msg: error }); }
  }
-
 }

@@ -21,8 +21,7 @@ const roomSchema = new Schema({
     default: 'Public'
   },
   users: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: 'User'
+    type: []
   }
 });
 
