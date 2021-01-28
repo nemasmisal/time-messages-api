@@ -34,7 +34,7 @@ module.exports = {
       const token = await createToken(user, password);
       if(token.msg) { return res.status(401).send(token); }
       setCookie(res, token);
-      return res.send({ id: user._id });
+      return res.send({ id: user._id, username: user.username });
     } catch (error) { res.status(507).send({ msg: error });
       
     }
